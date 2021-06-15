@@ -1,7 +1,12 @@
 import React from "react";
-import "antd/dist/antd.css";
 import { Input, Button, List } from "antd";
 import store from "./store/index";
+import {
+  getInputChangeAction,
+  getAddItemAction,
+  getDeleteItemAction,
+} from "./store/actionCreators";
+import "antd/dist/antd.css";
 
 class TodoList extends React.Component {
   constructor(props) {
@@ -42,10 +47,7 @@ class TodoList extends React.Component {
   }
 
   handleInputChange(e) {
-    const action = {
-      type: "change_input_value",
-      value: e.target.value,
-    };
+    const action = getInputChangeAction(e.target.value);
     // send action to Store, then Store will send this action and previous States to reducer.js
     store.dispatch(action);
   }
@@ -56,17 +58,12 @@ class TodoList extends React.Component {
   }
 
   handleBtnClick() {
-    const action = {
-      type: "add_todo_item",
-    };
+    const action = getAddItemAction();
     store.dispatch(action);
   }
 
   handltemDelete(index) {
-    const action = {
-      type: "delete_todo_item",
-      index,
-    };
+    const action = getDeleteItemAction(index);
     store.dispatch(action);
   }
 }
