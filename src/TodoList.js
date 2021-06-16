@@ -1,12 +1,11 @@
 import React from "react";
 import store from "./store/index";
 import TodoListUI from "./TodoListUI";
-import axios from "axios";
 import {
   getInputChangeAction,
   getAddItemAction,
   getDeleteItemAction,
-  initListAaction,
+  getTodoList,
 } from "./store/actionCreators";
 
 class TodoList extends React.Component {
@@ -35,11 +34,9 @@ class TodoList extends React.Component {
   }
 
   componentDidMount() {
-    axios.get("/api/todoList").then((res) => {
-      const data = res.data;
-      const action = initListAaction(data);
-      store.dispatch(action);
-    });
+    //Redux-thunk will allow a function to dispatch
+    const action = getTodoList();
+    store.dispatch(action);
   }
 
   handleInputChange(e) {
