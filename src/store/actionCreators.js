@@ -17,19 +17,19 @@ export const getDeleteItemAction = (index) => ({
   type: DELETE_TODO_ITEM,
   index,
 });
-export const initListAaction = (data) => ({
+export const initListAction = (data) => ({
   type: INIT_LIST_ACTION,
   data,
 });
 // redux-thunk can allow us send function through.
 // when return an arrow function, () can receive the store.dispatch
 // in the return function, we are suppose to change the store data
-// another round to use redux to create action and dispatch to store.
+// another round to use redux to create action and dispatch to store
 export const getTodoList = () => {
   return (dispatch) => {
     axios.get("/api/todoList").then((res) => {
       const data = res.data;
-      const action = initListAaction(data);
+      const action = initListAction(data);
       dispatch(action);
     });
   };
