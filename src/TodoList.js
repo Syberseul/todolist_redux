@@ -5,7 +5,8 @@ import {
   getInputChangeAction,
   getAddItemAction,
   getDeleteItemAction,
-  getTodoList,
+  // getTodoList,
+  getInitList,
 } from "./store/actionCreators";
 
 class TodoList extends React.Component {
@@ -34,8 +35,10 @@ class TodoList extends React.Component {
   }
 
   componentDidMount() {
-    //Redux-thunk will allow a function to dispatch
-    const action = getTodoList();
+    // //Redux-thunk will allow a function to dispatch
+    // const action = getTodoList();
+    // store.dispatch(action);
+    const action = getInitList();
     store.dispatch(action);
   }
 
